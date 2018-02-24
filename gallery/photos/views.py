@@ -7,7 +7,7 @@ from .models import Image
 # Create your views here.
 def photos_today(request):
     date = dt.date.today()
-    photos = Image.today_photos()
+    photos = Image.todays_photos()
     return render(request, 'all-photos/today-photos.html', {"date": date,})
 
 def photos_of_day(request):
