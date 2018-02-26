@@ -8,20 +8,7 @@ from .models import Image
 def photos_today(request):
     date = dt.date.today()
     photos = Image.todays_photos()
-    return render(request, 'all-photos/today-photos.html', {"date": date,})
-
-def photos_of_day(request):
-    date = dt.date.today()
-    # FUNCTION TO CONVERT DATE OBJECT TO FIND EXACT DAY
-    day = convert_dates(date)
-    html = f'''
-        <html>
-        <body>
-            <h1> {date.day}-{date.month}-{date.year}</h1>
-        </body>
-        </html>
-            '''
-    return HttpResponse(html)
+    return render(request, 'all-photos/today-photos.html', {"date": date,"photos":photos})
 
 def past_days_photos(request,past_date):
 

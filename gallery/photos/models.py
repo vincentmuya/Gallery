@@ -7,11 +7,25 @@ class Editor(models.Model):
     last_name = models.CharField(max_length = 30)
     email = models.EmailField
 
+    def __str__(self):
+        return self.first_name
+
+    def save_editor(self):
+        self.save()
+
 class tags(models.Model):
     name = models.CharField(max_length = 30)
 
     def __str__(self):
         return self.name
+class Category(models.Model):
+    category = models.CharField(max_length = 30)
+
+    def __str__(self):
+        return self.category
+
+    def save_category(self):
+        self.save()
 
 class Image(models.Model):
     title = models.CharField(max_length =60)
@@ -19,7 +33,8 @@ class Image(models.Model):
     editor = models.ForeignKey(Editor)
     tags = models.ManyToManyField(tags)
     pub_date = models.DateTimeField(auto_now_add=True)
-    image_image = models.ImageField(upload_to = 'images/')
+    image_image = models.ImageField(upload_to = 'images/', blank = True, null = True)
+    category = models.ManyToManyField(category)
 
     @classmethod
     def todays_photos(cls):
@@ -29,7 +44,7 @@ class Image(models.Model):
 
     @classmethod
     def days_photos(cls,date):
-        news = cls.objects.filter(pub_date__date = date)
+        photos = cls.objects.filter(pub_date__date = date)
         return photos
 
     @classmethod
