@@ -1,34 +1,28 @@
-{%extends 'all-photos/base.html'%}
-{% block content %}
-{{ block.super}}
+{%extends 'all-photos/base.html'%} {% block content %} {{ block.super}}
 
 <div class="container">
 
-  <!-- Looping through photos   -->
 
   <div class="row">
-  {% for photos_item in photos %}
+    <!-- Looping through photos   -->
+    {% for photos_item in photos %}
 
-    <!-- displaying photos images -->
-
-        <!--Display photos Image images  -->
-  <div class="col-md-4">
-    <div class="card" style="width: 20rem;">
-      {%if photos_item.image_image %}
-      <img src="{{photos_item.image_image.url}}" class="img-responsive" alt="Image" width="200" height="200">
-        {%endif%}
+    <!--Display photos Image images  -->
+    <div class="col-md-4">
+      <div class="card" style="width: 20rem;">
+        {%if photos_item.image_image %}
+        <img src="{{photos_item.image_image.url}}" class="img-responsive" alt="Image" width="200" height="200"> {%endif%}
         <div class="card-block">
-        <h2 class="text-center"> {{ photos_item.post }} </h2>
-      <h4 class="text-center"> {{ photos_item.title }} </h4>
-      <h5 class="text-center"> {{ photos_item.description }} </h5>
+          <h2 class="text-center"> {{ photos_item.post }} </h2>
+          <h4 class="text-center"> {{ photos_item.title }} </h4>
+          <h5 class="text-center"> {{ photos_item.description }} </h5>
+        </div>
+      </div>
     </div>
-    </div>
-  </div>
 
-  {% empty %}>
-    <h2 class="text-center">There No Photos Items</h2>
-  {% endfor %}
-</div>
+    {% empty %}>
+    <h2 class="text-center">There No Photos Items</h2> {% endfor %}
+  </div>
 </div>
 
 
