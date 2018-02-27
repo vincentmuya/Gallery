@@ -13,16 +13,15 @@ class Editor(models.Model):
     def save_editor(self):
         self.save()
 
-class tags(models.Model):
-    name = models.CharField(max_length = 30)
-
-    def __str__(self):
-        return self.name
 class Category(models.Model):
     category = models.CharField(max_length = 30)
 
     def __str__(self):
-        return self.category
+        return self.name
+
+
+    def __str__(self):
+        return self.name
 
     def save_category(self):
         self.save()
@@ -31,10 +30,9 @@ class Image(models.Model):
     title = models.CharField(max_length =60)
     description = models.TextField()
     editor = models.ForeignKey(Editor)
-    tags = models.ManyToManyField(tags)
+    category = models.ManyToManyField(Category)
     pub_date = models.DateTimeField(auto_now_add=True)
     image_image = models.ImageField(upload_to = 'images/', blank = True, null = True)
-    category = models.ManyToManyField(category)
 
     @classmethod
     def todays_photos(cls):
@@ -48,6 +46,6 @@ class Image(models.Model):
         return photos
 
     @classmethod
-    def search_by_title(cls,search_term):
+    def search_by_category(cls,search_term):
         photos = cls.objects.filter(title__icontains=search_term)
         return photos
