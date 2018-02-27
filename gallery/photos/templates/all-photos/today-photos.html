@@ -11,6 +11,7 @@
     <div class="col-md-4">
       <div class="card" style="width: 20rem;">
         {%if photos_item.image_image %}
+        <h1>{{ photos_item.Category }}</h1>
         <img src="{{photos_item.image_image.url}}" class="img-responsive" alt="Image" width="200" height="200"> {%endif%}
         <div class="card-block">
           <h2 class="text-center"> {{ photos_item.post }} </h2>
