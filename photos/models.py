@@ -1,5 +1,4 @@
 from django.db import models
-import datetime as dt
 
 # Create your models here.
 class Editor(models.Model):
@@ -36,8 +35,7 @@ class Image(models.Model):
 
     @classmethod
     def todays_photos(cls):
-        today = dt.date.today()
-        photos = cls.objects.filter(pub_date__date = today)
+        photos = cls.objects.all()
         return photos
 
     @classmethod
